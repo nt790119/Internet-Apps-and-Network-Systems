@@ -1,2 +1,1 @@
-# 3100_Final
-Final project documentation.
+Contains documentation, source code, libraries, and url's used to complete my project. 
