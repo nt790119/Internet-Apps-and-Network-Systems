@@ -1,0 +1,11 @@
+#documentation used for correct connection on i2c lcd display with the Raspberry Pi 4
+
+#used pins 02, 06, 03, and 05
+
+#black = gnd = pin 06
+#purple = vcc = pin 02
+#yellow = sda = pin 03
+#blue = sdl = pin 05
+
+#source
+# https://linuxhint.com/gpio-pinout-raspberry-pi/
