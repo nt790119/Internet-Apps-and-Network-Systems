@@ -1,0 +1,4 @@
+#Cron job to setup my python files to run at boot.
+
+#source
+# https://phoenixnap.com/kb/crontab-reboot
