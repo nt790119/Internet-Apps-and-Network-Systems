@@ -1,1 +1,1 @@
-Contains documentation, source code, and libraries used to complete my project. 
+Contains documentation, source code, and brief explanations used to complete my project. 
