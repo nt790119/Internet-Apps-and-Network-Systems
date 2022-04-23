@@ -1,0 +1,5 @@
+#Learning to call the definitions in the driver file to display content on the I2C display.
+#System Management Bus Functions (SMBus)
+
+#source
+# https://raspberry-projects.com/pi/programming-in-python/i2c-programming-in-python/using-the-i2c-interface-2
