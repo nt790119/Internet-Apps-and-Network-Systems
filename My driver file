@@ -1,0 +1,118 @@
+# -*- coding: utf-8 -*-
+# Original code found at:
+# https://gist.github.com/DenisFromHR/cc863375a6e19dce359d
+
+"""
+Compiled, mashed and generally mutilated 2014-2015 by Denis Pleic
+Made available under GNU GENERAL PUBLIC LICENSE
+
+# Modified Python I2C library for Raspberry Pi
+# as found on http://www.recantha.co.uk/blog/?p=4849
+# Joined existing 'i2c_lib.py' and 'lcddriver.py' into a single library
+# added bits and pieces from various sources
+# By DenisFromHR (Denis Pleic)
+# 2015-02-10, ver 0.1
+
+"""
+
+"""
+#Modified and condensed to create a simplified version to run on Raspberry Pi 4
+#removed the uncessary (sleep, functions, special characters, moving text,
+#scrolling text, cursors, modifying display, bus change, and blocks.)
+#2022-04-22 (NT)
+"""
+
+#import modules
+import smbus
+
+#i2c bus
+I2CBUS = 1
+
+#address of LCD
+addr27 = 0x27
+
+class i2c_device:
+   #initializing
+   def __init__(self, addr, port=I2CBUS):
+      self.address = addr
+      self.bus = smbus.SMBus(port)
+
+   #IP
+   def get_ip():
+      cmd  = "hostname -I | cut -d\' \' -f1"
+      return check_output(cmd, shell=True).decode("utf-8").strip()
+
+   #one command
+   def write(self, cmd):
+      self.bus.write_byte(self.address, cmd)
+
+   #command with argument
+   def arg(self, cmd, data):
+      self.bus.write_byte_data(self.address, cmd, data)
+
+#display commands
+LCD_CD = 0x01
+LCD_DC = 0x08
+
+#display on/off
+LCD_DON = 0x04
+LCD_DOFF = 0x00
+
+#function set
+LCD_4BM = 0x00
+LCD_2L = 0x08
+LCD_1L = 0x00
+LCD_5x10D = 0x04
+LCD_5x8D = 0x00
+
+#backlight control
+LCD_BL = 0x08
+LCD_NBL = 0x00
+
+#Enabling bit
+eb = 0b00000100
+
+#Registering bit
+rb = 0b00000001
+
+class lcd:
+   #initializing
+   def __init__(self):
+      self.lcd_device = i2c_device(addr27)
+
+   #clocks eb to latch command
+   def lcd_change(self, data):
+      self.lcd_device.write(data | eb | LCD_BL)
+      self.lcd_device.write(((data & ~eb) | LCD_BL))
+
+   def lcd_four(self, data):
+      self.lcd_device.write(data | LCD_BL)
+      self.lcd_change(data)
+
+   #writing to
+   def lcd_display(self, cmd, mode=0):
+      self.lcd_four(mode | (cmd & 0xF0))
+      self.lcd_four(mode | ((cmd << 4) & 0xF0))
+
+   #positioning
+   def lcd_show(self, string, line=1, pos=0):
+    if line == 1:
+      pos_new = pos
+    elif line == 2:
+      pos_new = 0x40 + pos
+
+    for char in string:
+      self.lcd_display(ord(char), rb)
+
+  #backlight on/off
+   def blkl(self, state):
+     #1=on and 0=off
+      if state == 1:
+         self.lcd_device.write(LCD_BL)
+      elif state == 0:
+         self.lcd_device.write(LCD_NBL)
+
+   #clearing
+   def lcd_clear(self):
+      self.lcd_display(LCD_CD)
+      
