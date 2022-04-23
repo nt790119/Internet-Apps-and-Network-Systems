@@ -1,0 +1,84 @@
+#can be saved under any name
+#mine saved under "nt.py"
+#runs with "python nt.py"
+
+
+#/usr/bin/python
+#import modules needed for i2c lcd display
+import driver
+import time
+import board
+import busio
+import platform
+import socket
+from adafruit_ms8607 import MS8607
+
+#references for calling attributes
+lcd = driver.lcd()
+i2c = busio.I2C(board.SCL, board.SDA)
+sensor = MS8607(i2c)
+hostname = socket.gethostname()
+ip_addr = socket.gethostbyname(hostname + ".local")
+
+#beginning while loop program with brief message
+while True:
+    lcd.lcd_clear()
+    lcd.lcd_show("3100 Final", 1)
+    time.sleep(3)
+    lcd.lcd_clear()
+    time.sleep(1)
+
+    lcd.lcd_show("Nick Tipton :)", 1)
+    lcd.lcd_show("Let's Begin!", 2)
+    time.sleep(3)
+    lcd.lcd_clear()
+    time.sleep(1)
+
+    lcd.lcd_show("Operating System", 1)
+    lcd.lcd_show(platform.system(),2)
+    time.sleep(3)
+    lcd.lcd_clear()
+    time.sleep(1)
+
+    #display hostname
+    lcd.lcd_show("Hostname:", 1)
+    lcd.lcd_show(platform.node(), 2)
+    time.sleep(3)
+    lcd.lcd_clear()
+    time.sleep(1)
+
+    #display local IP address
+    lcd.lcd_show("IP Address:", 1)
+    lcd.lcd_show(ip_addr, 2)
+    time.sleep(3)
+    lcd.lcd_clear()
+    time.sleep(1) 
+
+    #display current date and time
+    lcd.lcd_show("Time: %s" %time.strftime("%H:%M:%S"), 1)
+    lcd.lcd_show("Date: %s" %time.strftime("%m/%d/%Y"), 2)
+    time.sleep(3)
+    lcd.lcd_clear()
+    time.sleep(1) 
+
+    #display current temperature and pressure
+    lcd.lcd_show("Pressure: %.2f hPa" % sensor.pressure, 1)
+    lcd.lcd_show("Temp: %.2f C" % sensor.temperature, 2)
+    time.sleep(3)
+    lcd.lcd_clear()
+    time.sleep(1)
+
+    #display current humidity and program end message
+    lcd.lcd_show("Humidity: %.2f %% rH" % sensor.relative_humidity, 1)
+    lcd.lcd_show("The End!", 2)
+    time.sleep(3)
+    lcd.lcd_clear()
+    time.sleep(1)
+
+    #display restarting loop message
+    lcd.lcd_show("Restarting...", 1)
+    lcd.lcd_show("Just a moment...", 2)
+    time.sleep(3)
+    lcd.lcd_clear()
+    time.sleep(1)
+    
