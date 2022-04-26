@@ -1,7 +1,14 @@
+"""
 #can be saved under any name
 #mine saved under "nt.py"
 #runs with "python nt.py"
 
+#There are pieces in here I pulled from labs to find and gather the temp, pressure, and humidity on the display.
+#Numerous references and sources are outlined in the repository contributing to converting from the command line to the i2c display.
+#Necessary modules were referenced in the modules file in the repository as well as the other helpful sources leading to this completed script.
+# "lcd." references the definitions of the driver file I modified in order to print to the i2c display.
+
+"""
 
 #/usr/bin/python
 #import modules needed for i2c lcd display
