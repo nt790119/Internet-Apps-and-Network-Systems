@@ -1,6 +1,15 @@
+"""
 #save as "driver.py"
 #names matter as this file is referenced for defining functions in python script file.
 #if changing name, accommodate the change in python script file when referenced.
+
+#This is my driver file that relays all the necessary information for the i2c lcd screen. 
+#It consists of the configurations for the i2c address and the bus.
+#Initializing the i2c device in order to write to the display. As well as defining aspects to control the on/off as well as the backlights. 
+#This file was referenced specifically from the file I specified in another file as well as credited below.
+#I made my own changes to it by adding/removing components, as well as renaming and rearranging parts to fit my need.
+"""
+
 
 
 # -*- coding: utf-8 -*-
@@ -19,6 +28,8 @@ Made available under GNU GENERAL PUBLIC LICENSE
 # 2015-02-10, ver 0.1
 
 """
+
+
 
 """
 #Modified and condensed to create a simplified version to run on Raspberry Pi 4
