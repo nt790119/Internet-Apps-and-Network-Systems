@@ -8,6 +8,12 @@
 #Necessary modules were referenced in the modules file in the repository as well as the other helpful sources leading to this completed script.
 # "lcd." references the definitions of the driver file I modified in order to print to the i2c display.
 
+#At the time of completion, the project was not working, and is something I would need to dig deeper into both my script and the driver file.
+#Clearing the screen and setting it back to normal is the part missing/not working in this project to properly display the characters on the i2c lcd.
+#SSH is the mostly used protocol in this project as building and running everything was done via my personal MAC. 
+#This allowed for easibility in working on the project from something other than the raspberry pi directly. 
+#Also TCP/IP was used with the VLC live stream through searching the IP address with the specified port when running the VLC start command.
+
 """
 
 #/usr/bin/python
