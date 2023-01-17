@@ -1,2 +1,2 @@
-Final project for Internet Apps and Network Systems at Ohio University | 
+Final project for Internet Apps and Network Systems | 
 Contains documentation, source code, and brief explanations.
